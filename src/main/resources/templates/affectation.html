@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Employee</title>
+</head>
+<body>
+<form th:action="@{/affecter}" th:object="${affectation}" method="post">
+    <label>Employee : </label>
+
+    <select th:field="*{employee}">
+        <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+    </select>
+    <label>Project : </label>
+
+    <select th:field="*{project}">
+        <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.name}"></option>
+    </select>
+    <label>Implication : </label>
+    <input type="number" th:field="*{implication}">
+    <input type="submit" value="Affecter project">
+</form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${user}"></h1>
+<a th:href="@{/create}">Add Employee</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Skill</th>
+        <th>Project</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td>
+            <ul th:each="skill : ${employee.skills}">
+                <li th:text="${skill.name}"></li>
+            </ul>
+        </td>
+        <td>
+            <ul th:each="project : ${employee.projects}">
+                <li th:text="${project.name}"></li>
+            </ul>
+        </td>
+        <td>
+            <form th:action="@{/delete(id=${employee.id})}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+</table>
+
+<form th:action="@{/create}">
+    <button>Add Employee</button>
+</form>
+</body>
+</html>
